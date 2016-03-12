@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Trip Wallet</string>
+    <string name="action_settings">RàZ de la liste</string>
+    <string name="selectSortie">Selectionner une sortie</string>
+   	<string name="clearDB">Tout effacer</string>
+    <string name="title_activity_add_conso">Nouvelle depense</string>
+    <string name="title_activity_show_conso">Les depenses</string>
+    <string name="title_activity_show_final">Balance</string>
+	<string name="note_show_final">&lt;u>Note :&lt;/u>&lt;br>Les montant negatif (en rouge) sont les montants du.</string>
+	
+</resources>
+
+
+
+
