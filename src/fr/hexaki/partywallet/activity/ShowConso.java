@@ -22,18 +22,12 @@ import fr.hexaki.partywallet.db.elements.Personne;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ShowConso extends Activity implements OnItemClickListener,OnItemLongClickListener{
+public class ShowConso extends MyActivity implements OnItemClickListener,OnItemLongClickListener{
 
-	DatabaseHandler DB;
-
-	public static final String TAG=MainActivity.TAG ;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_show_conso);
-		
-		DB= new DatabaseHandler(this);
 		
 		resetList();
 		
@@ -46,7 +40,7 @@ public class ShowConso extends Activity implements OnItemClickListener,OnItemLon
 	private void resetList(){
 		ArrayList<Consomation> list = DB.getConsomationsSorite(MainActivity.numSortie);
 		
-		Log.d(TAG,"il y a :"+list.size()+" conso(s)");
+		MyActivity.log(this,"il y a :"+list.size()+" conso(s)");
 
 		if(list.size()!=0){
 			MyConsoAdapter ad = new MyConsoAdapter(this, list);
@@ -65,20 +59,20 @@ public class ShowConso extends Activity implements OnItemClickListener,OnItemLon
 	
 	public void removeConso(int id){
 		Consomation c =DB.getConsommation( id);
-		Log.d(TAG," effacement de :"+c.id);
+		MyActivity.log(this," effacement de :"+c.id);
 		DB.removeConsomation(c.id);
-		Log.d(TAG,"effacé");
+		MyActivity.log(this,"effacé");
 		resetList();
 	}
 	
 	public void detail(int id){
-		Log.d(TAG,"");
+		MyActivity.log(this,"");
 		
 		Consomation c =DB.getConsommation(id);
 		ArrayList<Personne> payeur = DB.getPersonnesPaye(c.id);
-		Log.d(TAG,""+payeur.toString());
+		MyActivity.log(this,""+payeur.toString());
 		ArrayList<Personne> recoi = DB.getPersonnesRecu(c.id);
-		Log.d(TAG,""+recoi.toString());
+		MyActivity.log(this,""+recoi.toString());
 		String txt="";
 
 		if(payeur.size()==0){

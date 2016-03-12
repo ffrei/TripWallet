@@ -1,54 +1,29 @@
 package fr.hexaki.partywallet.activity;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import fr.hexaki.partywallet.R;
-import fr.hexaki.partywallet.db.DatabaseHandler;
 import fr.hexaki.partywallet.db.elements.Sortie;
 
-public class MainActivity extends Activity implements OnClickListener{
+public class MainActivity extends MyActivity implements OnClickListener{
 
-	public static final String TAG="PARTY_WALLET" ;
-	public static final String PREFS_NAME = "PrefSortie";
-	public static int numSortie=0;
-	
-	DatabaseHandler DB;
-	
-	public static void updateSorite(Context ctxt, int num) {
-		
-		SharedPreferences settings = ctxt.getSharedPreferences(PREFS_NAME, 0);
-		Editor editor = settings.edit();
-		editor.putInt("numSortie", num);
-		editor.commit();
-		MainActivity.numSortie=num;
-	}
+
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		Log.d(TAG,"==========================================================");
-		Log.d(TAG,"=============Initialisation Party Wallet==================");
-		Log.d(TAG,"==========================================================");
-		
-		DB= new DatabaseHandler(this); 
-		
-		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-		numSortie= settings.getInt("numSortie", 0);
-		
-		
-		
+		MyActivity.log(this,"==========================================================");
+		MyActivity.log(this,"=============Initialisation Party Wallet==================");
+		MyActivity.log(this,"==========================================================");
 	}
+	
 	@Override
 	protected void onResume() {
 		TextView t = (TextView)findViewById(R.id.outputSorite);

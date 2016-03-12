@@ -26,10 +26,8 @@ import fr.hexaki.partywallet.db.elements.Consomation;
 import fr.hexaki.partywallet.db.elements.Lien;
 import fr.hexaki.partywallet.db.elements.Personne;
 
-public class Add_conso extends Activity implements OnClickListener{
-
-	DatabaseHandler DB;
-	public static final String TAG=MainActivity.TAG ;
+public class Add_conso extends MyActivity implements OnClickListener{
+	
 	ArrayList<Personne> list ;
 	
 	@Override
@@ -113,12 +111,12 @@ public class Add_conso extends Activity implements OnClickListener{
 			
 			if(cont){
 			
-				Log.d(TAG, "La cons : "+desc+" est de type "+type+" pour un montant de : "+val  );
+				MyActivity.log(this,"La cons : "+desc+" est de type "+type+" pour un montant de : "+val  );
 				
 				Consomation c = new Consomation(MainActivity.numSortie,val, desc, type);
 				DB.addConsomation(c);
 				
-				Log.d(TAG,"ID de la conso : "+c.id);
+				MyActivity.log(this,"ID de la conso : "+c.id);
 
 				
 				
@@ -131,7 +129,7 @@ public class Add_conso extends Activity implements OnClickListener{
 					
 					String nom ="" +((TextView)llfor.getChildAt(1)).getText(); 
 					
-					Log.d(TAG, "	"+nom+" :");
+					MyActivity.log(this, "	"+nom+" :");
 				
 					
 					
@@ -146,21 +144,21 @@ public class Add_conso extends Activity implements OnClickListener{
 					if(paye){
 						if(recu){
 							// il a payé et recu
-							Log.d(TAG,"a payer et recu");
+							MyActivity.log(this,"a payer et recu");
 							lien=DB.PAYE_ET_RECU;
 						}else{
 							// il paye et recois pas
-							Log.d(TAG,"paye mais recois pas");
+							MyActivity.log(this,"paye mais recois pas");
 							lien=DB.PAYE;
 						}
 					}else{
 						if(recu){
 							// il recu 
-							Log.d(TAG,"recois");
+							MyActivity.log(this,"recois");
 							lien=DB.RECU;
 						}else{
 							// il n'as aucun lien
-							Log.d(TAG,"n'as aucun lien");
+							MyActivity.log(this,"n'as aucun lien");
 							lien=-1;
 						}
 					}

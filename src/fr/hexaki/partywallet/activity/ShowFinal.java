@@ -15,12 +15,8 @@ import fr.hexaki.partywallet.db.DatabaseHandler;
 import fr.hexaki.partywallet.db.adapter.MyFinalAdapter;
 import fr.hexaki.partywallet.db.elements.Personne;
 
-public class ShowFinal extends Activity{
+public class ShowFinal extends MyActivity{
 
-	DatabaseHandler DB;
-
-	public static final String TAG=MainActivity.TAG ;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,8 +24,7 @@ public class ShowFinal extends Activity{
 
 		TextView textView = (TextView) findViewById(R.id.note_show_final);
 		textView.setText(Html.fromHtml((String) textView.getText()));
-		
-		DB= new DatabaseHandler(this);
+
 		resetList();
 	}
 

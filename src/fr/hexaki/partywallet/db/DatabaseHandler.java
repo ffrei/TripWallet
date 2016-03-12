@@ -7,8 +7,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import fr.hexaki.partywallet.activity.MainActivity;
+import fr.hexaki.partywallet.activity.MyActivity;
 import fr.hexaki.partywallet.db.elements.Consomation;
 import fr.hexaki.partywallet.db.elements.Lien;
 import fr.hexaki.partywallet.db.elements.MyDate;
@@ -311,7 +311,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		String selectQuery = "SELECT  * FROM " + TABLE_CONS +" WHERE " +KEY_ID_SORTIE+"= \""+id+"\"";;
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
-		Log.d(TAG,"getConsomationsSorite "+cursor.getCount());
+		MyActivity.log(this,"getConsomationsSorite "+cursor.getCount());
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
@@ -354,12 +354,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void removeConsomation(int id){
 		SQLiteDatabase db = this.getWritableDatabase();
 		String query = "DELETE FROM "+TABLE_LIENS + " WHERE "+KEY_ID_CONS+ "= \""+id+"\"";
-		Log.d(TAG,"Exec querry : "+query);
+		MyActivity.log(this,"Exec querry : "+query);
 		db.execSQL(query);
 		query = "DELETE FROM "+TABLE_CONS + " WHERE "+KEY_ID_CONS+ "= \""+id+"\"";
-		Log.d(TAG,"Exec querry : "+query);
+		MyActivity.log(this,"Exec querry : "+query);
 		db.execSQL(query);
-		Log.d(TAG,"Done");
+		MyActivity.log(this,"Done");
 	}
 
 	
@@ -407,7 +407,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				
 				res =  new Sortie(v_id,dest,date,duree );
 			} catch (Exception e) {
-				Log.d(TAG,"getSortie "+e.getMessage());
+				MyActivity.log(this,"getSortie "+e.getMessage());
 			}
 		}
 		
